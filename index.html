@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Estudo: Pixel Art Animada em CSS</title>
+    <style>
+        :root {
+            /* Tamanho de um "pixel" base */
+            --size: 8px; 
+            /* Cores */
+            --p: #000;    /* Cor Principal (Preto) */
+            --e: #ff3333; /* Olhos (Vermelho mais vibrante) */
+        }
+
+        body {
+            background-color: #1a1a2e; /* Fundo escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Evita barras de rolagem */
+        }
+
+        .morcego-animado {
+            width: var(--size);
+            height: var(--size);
+            background: transparent;
+            position: relative;
+
+            /* Aplica a animação:
+               nome | duração | timing | iteração */
+            animation: baterAsas 0.6s steps(1) infinite;
+        }
+
+        /* Definição da Animação usando @keyframes */
+        @keyframes baterAsas {
+            /* FRAME 1: ASAS PARA CIMA (0% do tempo e 100% no fim do ciclo) */
+            0%, 100% {
+                box-shadow: 
+                    /* --- Cabeça e Corpo (Fixo) --- */
+                    /* Orelhas (Linha 1) */
+                    calc(var(--size) * 6) calc(var(--size) * 1) var(--p), 
+                    calc(var(--size) * 10) calc(var(--size) * 1) var(--p),
+                    /* Cabeça (Linha 2) */
+                    calc(var(--size) * 6) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 7) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 8) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 10) calc(var(--size) * 2) var(--p),
+                    /* Linha Olhos (Linha 3) */
+                    calc(var(--size) * 5) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 6) calc(var(--size) * 3) var(--e), /* Olho */
+                    calc(var(--size) * 7) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 10) calc(var(--size) * 3) var(--e), /* Olho */
+                    calc(var(--size) * 11) calc(var(--size) * 3) var(--p),
+                    /* Boca/Corpo (Linha 4) */
+                    calc(var(--size) * 6) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 7) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 10) calc(var(--size) * 4) var(--p),
+                    /* Ponta Corpo (Linha 5) */
+                    calc(var(--size) * 7) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 5) var(--p),
+
+                    /* --- Asas GRANDES: POSIÇÃO CIMA --- */
+                    /* Asa Esquerda */
+                    calc(var(--size) * 0) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 1) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 2) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 1) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 2) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 3) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 2) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 3) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 4) calc(var(--size) * 3) var(--p),
+                    /* Asa Direita */
+                    calc(var(--size) * 16) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 15) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 14) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 15) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 14) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 13) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 14) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 13) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 12) calc(var(--size) * 3) var(--p);
+            }
+
+            /* FRAME 2: ASAS PARA BAIXO (50% do tempo do ciclo) */
+            50% {
+                box-shadow: 
+                    /* --- Cabeça e Corpo (Repetido/Fixo) --- */
+                    calc(var(--size) * 6) calc(var(--size) * 1) var(--p), 
+                    calc(var(--size) * 10) calc(var(--size) * 1) var(--p),
+                    calc(var(--size) * 6) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 7) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 8) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 2) var(--p), 
+                    calc(var(--size) * 10) calc(var(--size) * 2) var(--p),
+                    calc(var(--size) * 5) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 6) calc(var(--size) * 3) var(--e),
+                    calc(var(--size) * 7) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 10) calc(var(--size) * 3) var(--e),
+                    calc(var(--size) * 11) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 6) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 7) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 10) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 7) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 8) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 9) calc(var(--size) * 5) var(--p),
+
+                    /* --- Asas GRANDES: POSIÇÃO BAIXO --- */
+                    /* Asa Esquerda */
+                    calc(var(--size) * 1) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 2) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 3) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 2) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 3) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 4) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 3) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 4) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 5) calc(var(--size) * 5) var(--p),
+                    /* Asa Direita */
+                    calc(var(--size) * 15) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 14) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 13) calc(var(--size) * 3) var(--p),
+                    calc(var(--size) * 14) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 13) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 12) calc(var(--size) * 4) var(--p),
+                    calc(var(--size) * 13) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 12) calc(var(--size) * 5) var(--p),
+                    calc(var(--size) * 11) calc(var(--size) * 5) var(--p);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="morcego-animado"></div>
+
+</body>
+</html>
